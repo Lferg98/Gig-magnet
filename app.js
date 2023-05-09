@@ -1,43 +1,64 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { graphqlHTTP } = require('express-graphql');
 
+require('dotenv').config();
+
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 
+const { connect, connection } = require('./connection');
+
+
+
 const app = express();
+const PORT = 3000;
 
-app.use(bodyParser.json());
+connect();
 
-// graphql schemas - resolvers 
+
+
+const schema = buildSchema(`
+  type Event {
+    _id: ID!
+    title: String!
+    description: String!
+    price: Float!
+    date: String!
+  }
+
+  input EventInput {
+    title: String!
+    description: String!
+    price: Float!
+    date: String!
+  }
+  
+  type Query {
+    events: [Event!]!
+  }
+  
+  type Mutation {
+    createEvent(eventInput: EventInput): Event
+  }
+`);
+
+const rootValue = {
+  events: () => {
+    return ['Club event', 'Esoteric Festival', 'My-Aeon'];
+  },
+  createEvent: (args) => {
+    const eventName = args.name;
+    return eventName;
+  },
+};
+
+app.use(express.json());
+
 app.use('/graphql', graphqlHTTP({
-    schema: buildSchema(`
-        type RootQuery {
-            events: [String!]!
-        }   
-        
-        type RootMutation {
-            createEvent(name: String): String
-        }
-    
-        schema {
-            query: RootQuery
-            mutation: RootMutation
-        }
-    `),
-    rootValue: {
-        events: () => {
-            return ['Club event', 'Esoteric Festival', 'My-Aeon'];
-        },
-        createEvent: (args) => {
-            const eventName = args.name;
-            return eventName;
-        }
-    },
-    graphiql: true
-})
-);
+  schema,
+  rootValue,
+  graphiql: true,
+}));
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
