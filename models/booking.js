@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const gigSchema = new Schema(
+const bookingSchema = new Schema(
     {
         event: {
             type: Schema.Types.ObjectId,
@@ -15,4 +15,4 @@ const gigSchema = new Schema(
     { timestamps: true}
 );
 
-module.exports = mongoose.model('gig', gigSchema);
+module.exports = mongoose.model('booking', bookingSchema);

@@ -16,12 +16,16 @@ const schema = buildSchema(`
     createdEvents: [Event!]
   }
 
-  type Gig {
+  type Booking {
     _id: ID!
     event: Event!
     user: User!
- 
-    
+  }
+
+  type AuthCredentials {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
   }
 
   input UserInput {
@@ -38,13 +42,15 @@ const schema = buildSchema(`
   
   type Query {
     events: [Event!]!
-    gigs: [Gig]!
+    bookings: [Booking]!
+    login(email: String!, password: String!): AuthCredentials
   }
   
   type Mutation {
     createEvent(eventInput: EventInput): Event
     createUser(userInput: UserInput): User
-    bookEvent(event: ID!): Gig!
+    bookEvent(eventId: ID!): Booking!
+    cancelBooking(bookingId: ID!): Event!
 
   }
   `);
