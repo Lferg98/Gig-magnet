@@ -1,0 +1,50 @@
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: #008080;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #006666;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: #008080;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  text-decoration: underline;
+}

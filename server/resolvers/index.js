@@ -2,12 +2,12 @@ const Event = require('../../models/event');
 const User = require('../../models/user');
 const Booking = require('../../models/booking');
 const bcrypt = require('bcrypt');
-const user = require('../../models/user');
+
 
 
 const { JWT_SECRET, JWT_EXPIRATION_TIME } = process.env;
 
-const User = require('../../models/user');
+
 
 
 

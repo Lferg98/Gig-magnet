@@ -8,6 +8,7 @@ const databaseName = 'project3';
 
 const mongoURI = `mongodb+srv://${username}:${password}@${clusterUrl}/${databaseName}?retryWrites=true&w=majority`;
 
+
 async function connect() {
   try {
     await mongoose.connect(mongoURI, {

@@ -13,16 +13,14 @@ const App = () => {
     <Router>
       <HeaderNav />
       <main>
-        <Routes>
-          <Route exact path="/">
-            
-          </Route>
-          <Route path="/auth" component={Auth} />
-          <Route path="/events" component={Events} />
-          <Route path="/about" component={About} />
-          <Route path="/bookings" component={Bookings} />
-      
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/bookings" element={<Bookings />} />
+          </Routes>
+        </div>
       </main>
     </Router>
   );
